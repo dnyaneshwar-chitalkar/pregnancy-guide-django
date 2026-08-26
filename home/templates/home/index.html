@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BabyPlan — Your Parenthood Journey</title>
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --green: #66866d;
+      --green-dark: #38513e;
+      --green-light: #e9f0e9;
+
+      --cream: #faf8f3;
+      --cream-dark: #f2eee5;
+
+      --peach: #e8a38c;
+      --peach-light: #f8e4dc;
+
+      --dark: #253229;
+      --muted: #6d7770;
+
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "DM Sans", sans-serif;
+      color: var(--dark);
+      background: var(--cream);
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    .navbar {
+      padding: 20px 0;
+      background: rgba(250, 248, 243, 0.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: var(--green-dark);
+      font-size: 25px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: var(--green);
+      color: white;
+
+      font-size: 18px;
+    }
+
+    .nav-link {
+      color: var(--dark);
+      font-weight: 500;
+      margin: 0 8px;
+    }
+
+    .nav-link:hover {
+      color: var(--green);
+    }
+
+    .nav-btn {
+      background: var(--green);
+      color: white;
+
+      border-radius: 30px;
+      padding: 11px 22px;
+
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-btn:hover {
+      background: var(--green-dark);
+      color: white;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      padding: 100px 0 110px;
+
+      background:
+        radial-gradient(
+          circle at 85% 30%,
+          rgba(232, 163, 140, 0.22),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 10% 90%,
+          rgba(102, 134, 109, 0.15),
+          transparent 30%
+        ),
+        var(--cream);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      padding: 8px 15px;
+
+      border-radius: 30px;
+
+      background: var(--green-light);
+      color: var(--green-dark);
+
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .hero h1 {
+      margin-top: 24px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: 1.05;
+
+      color: var(--dark);
+    }
+
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero-text {
+      max-width: 570px;
+
+      margin-top: 25px;
+
+      color: var(--muted);
+
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+
+      margin-top: 32px;
+    }
+
+    .btn-main {
+      padding: 14px 27px;
+
+      border-radius: 30px;
+
+      background: var(--green);
+      color: white;
+
+      font-weight: 600;
+      text-decoration: none;
+
+      box-shadow: 0 10px 25px rgba(102, 134, 109, 0.25);
+    }
+
+    .btn-main:hover {
+      background: var(--green-dark);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-custom {
+      padding: 14px 27px;
+
+      border: 1px solid #cfd5cf;
+      border-radius: 30px;
+
+      color: var(--dark);
+
+      font-weight: 600;
+      text-decoration: none;
+
+      background: rgba(255,255,255,0.4);
+    }
+
+    .btn-outline-custom:hover {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    /* =========================
+       PHONE MOCKUP
+    ========================= */
+
+    .hero-visual {
+      position: relative;
+
+      min-height: 550px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-circle {
+      position: absolute;
+
+      width: 430px;
+      height: 430px;
+
+      border-radius: 50%;
+
+      background: var(--green-light);
+    }
+
+    .phone {
+      position: relative;
+      z-index: 3;
+
+      width: 265px;
+
+      padding: 9px;
+
+      border-radius: 38px;
+
+      background: #171b18;
+
+      box-shadow:
+        0 35px 70px rgba(40, 50, 42, 0.25);
+    }
+
+    .phone img {
+      display: block;
+
+      width: 100%;
+
+      border-radius: 30px;
+    }
+
+    .floating-card {
+      position: absolute;
+      z-index: 5;
+
+      padding: 14px 18px;
+
+      border-radius: 16px;
+
+      background: rgba(255,255,255,0.95);
+
+      box-shadow: 0 15px 35px rgba(0,0,0,0.10);
+
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .floating-card.one {
+      left: 2%;
+      top: 23%;
+    }
+
+    .floating-card.two {
+      right: 0;
+      bottom: 20%;
+    }
+
+    .floating-icon {
+      display: inline-flex;
+
+      width: 32px;
+      height: 32px;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-right: 7px;
+
+      border-radius: 10px;
+
+      background: var(--peach-light);
+    }
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .section-label {
+      color: var(--green);
+
+      font-size: 14px;
+      font-weight: 700;
+
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .section-title {
+      margin-top: 12px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 48px;
+      line-height: 1.15;
+    }
+
+    .section-description {
+      max-width: 620px;
+
+      margin: 18px auto;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features {
+      background: var(--white);
+    }
+
+    .feature-card {
+      height: 100%;
+
+      padding: 32px;
+
+      border: 1px solid #edf0ed;
+      border-radius: 22px;
+
+      background: white;
+
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-7px);
+
+      border-color: #d9e3da;
+
+      box-shadow: 0 20px 45px rgba(50, 65, 54, 0.08);
+    }
+
+    .feature-icon {
+      width: 58px;
+      height: 58px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 22px;
+
+      border-radius: 17px;
+
+      background: var(--green-light);
+
+      font-size: 25px;
+    }
+
+    .feature-card h5 {
+      margin-bottom: 12px;
+
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .feature-card p {
+      margin: 0;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
+
+    .how {
+      background: var(--cream);
+    }
+
+    .step {
+      position: relative;
+
+      text-align: center;
+    }
+
+    .step-number {
+      width: 62px;
+      height: 62px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 22px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+      color: white;
+
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .step h5 {
+      font-weight: 700;
+    }
+
+    .step p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* =========================
+       APP SHOWCASE
+    ========================= */
+
+    .showcase {
+      background: var(--green-dark);
+      color: white;
+
+      overflow: hidden;
+    }
+
+    .showcase .section-label {
+      color: #b9d0bd;
+    }
+
+    .showcase-title {
+      margin-top: 12px;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 48px;
+    }
+
+    .showcase-text {
+      color: #d5ded7;
+
+      line-height: 1.8;
+    }
+
+    .app-screens {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 18px;
+    }
+
+    .app-screen {
+      width: 190px;
+
+      border-radius: 28px;
+
+      padding: 7px;
+
+      background: #151b17;
+
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
+
+    .app-screen img {
+      width: 100%;
+
+      border-radius: 23px;
+    }
+
+    .app-screen.middle {
+      transform: translateY(-35px);
+    }
+
+    /* =========================
+       TRUST
+    ========================= */
+
+    .trust {
+      padding: 65px 0;
+
+      background: var(--cream-dark);
+    }
+
+    .trust-box {
+      text-align: center;
+    }
+
+    .trust-number {
+      color: var(--green-dark);
+
+      font-size: 35px;
+      font-weight: 700;
+    }
+
+    .trust-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      padding: 110px 0;
+
+      text-align: center;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(255,255,255,0.4),
+          transparent 40%
+        ),
+        var(--peach-light);
+    }
+
+    .cta h2 {
+      max-width: 700px;
+
+      margin: auto;
+
+      font-family: "Playfair Display", serif;
+
+      font-size: 50px;
+      line-height: 1.15;
+    }
+
+    .cta p {
+      max-width: 600px;
+
+      margin: 20px auto 30px;
+
+      color: var(--muted);
+
+      line-height: 1.7;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 35px 0;
+
+      background: var(--dark);
+
+      color: #aeb8b1;
+    }
+
+    .footer-brand {
+      color: white;
+
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .footer-links a {
+      margin-left: 20px;
+
+      color: #aeb8b1;
+
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 991px) {
+
+      .hero {
+        padding-top: 70px;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-text {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-visual {
+        margin-top: 60px;
+      }
+
+      .floating-card.one {
+        left: 5%;
+      }
+
+      .floating-card.two {
+        right: 5%;
+      }
+
+      .section-title,
+      .showcase-title,
+      .cta h2 {
+        font-size: 40px;
+      }
+
+    }
+
+    @media (max-width: 576px) {
+
+      .hero {
+        padding: 55px 0 70px;
+      }
+
+      .hero h1 {
+        font-size: 45px;
+      }
+
+      .hero-visual {
+        min-height: 480px;
+      }
+
+      .hero-circle {
+        width: 320px;
+        height: 320px;
+      }
+
+      .phone {
+        width: 230px;
+      }
+
+      .floating-card {
+        font-size: 11px;
+      }
+
+      .floating-card.one {
+        left: 0;
+      }
+
+      .floating-card.two {
+        right: 0;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .section-title,
+      .showcase-title,
+      .cta h2 {
+        font-size: 35px;
+      }
+
+      .app-screens {
+        gap: 8px;
+      }
+
+      .app-screen {
+        width: 115px;
+        border-radius: 20px;
+      }
+
+      .app-screen.middle {
+        transform: translateY(-20px);
+      }
+
+      .footer-links {
+        margin-top: 15px;
+      }
+
+      .footer-links a {
+        margin-left: 0;
+        margin-right: 15px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar navbar-expand-lg sticky-top">
+
+  <div class="container">
+
+    <a class="brand" href="#">
+      <span class="brand-mark">♡</span>
+      BabyPlan
+    </a>
+
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarMenu"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div
+      class="collapse navbar-collapse"
+      id="navbarMenu"
+    >
+
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+
+        <li class="nav-item">
+          <a class="nav-link" href="#features">
+            Features
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#how">
+            How It Works
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#app">
+            App
+          </a>
+        </li>
+
+        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+          <a class="nav-btn" href="#download">
+            Get Started
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <div class="col-lg-6 hero-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Built for your journey to parenthood
+        </div>
+
+
+        <h1>
+          Planning for
+          <span>tomorrow</span>
+          starts today.
+        </h1>
+
+
+        <p class="hero-text">
+          BabyPlan is a simple mobile application designed
+          to help couples plan, understand and stay organized
+          throughout their journey toward parenthood.
+        </p>
+
+
+        <div class="hero-buttons">
+
+          <a
+            href="#download"
+            class="btn-main"
+          >
+            Explore BabyPlan →
+          </a>
+
+          <a
+            href="#features"
+            class="btn-outline-custom"
+          >
+            Discover Features
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-lg-6">
+
+        <div class="hero-visual">
+
+          <div class="hero-circle"></div>
+
+
+          <div class="floating-card one">
+
+            <span class="floating-icon">
+              ✓
+            </span>
+
+            Simple Planning
+
+          </div>
+
+
+          <div class="phone">
+
+            <!-- Replace with actual app screenshot -->
+
+            <img
+              src="https://via.placeholder.com/530x1060.png?text=BabyPlan+App"
+              alt="BabyPlan Mobile App"
+            >
+
+          </div>
+
+
+          <div class="floating-card two">
+
+            <span class="floating-icon">
+              ♥
+            </span>
+
+            Couple Focused
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section
+  class="section features"
+  id="features"
+>
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <div class="section-label">
+        Everything in one place
+      </div>
+
+      <h2 class="section-title">
+        Designed around your needs.
+      </h2>
+
+      <p class="section-description">
+        BabyPlan brings the essential tools and information
+        together in one simple, easy-to-use experience.
+      </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-3">
+
+        <div class="feature-card">
+
+          <div class="feature-icon">
+            📅
+          </div>
+
+          <h5>
+            Smart Planning
+          </h5>
+
+          <p>
+            Organize important dates and plan
+            your journey with confidence.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-3">
+
+        <div class="feature-card">
+
+          <div class="feature-icon">
+            📈
+          </div>
+
+          <h5>
+            Track Progress
+          </h5>
+
+          <p>
+            Keep track of important information
+            and understand your progress over time.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-3">
+
+        <div class="feature-card">
+
+          <div class="feature-icon">
+            ✨
+          </div>
+
+          <h5>
+            Helpful Insights
+          </h5>
+
+          <p>
+            Get useful insights and information
+            to support better planning.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-6 col-lg-3">
+
+        <div class="feature-card">
+
+          <div class="feature-icon">
+            🤍
+          </div>
+
+          <h5>
+            Couple Focused
+          </h5>
+
+          <p>
+            A thoughtful experience designed
+            for both partners.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section
+  class="section how"
+  id="how"
+>
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <div class="section-label">
+        Simple to get started
+      </div>
+
+      <h2 class="section-title">
+        Three steps. One journey.
+      </h2>
+
+    </div>
+
+
+    <div class="row g-5">
+
+      <div class="col-md-4">
+
+        <div class="step">
+
+          <div class="step-number">
+            01
+          </div>
+
+          <h5>
+            Create your profile
+          </h5>
+
+          <p>
+            Set up your profile and tell BabyPlan
+            about your journey.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-4">
+
+        <div class="step">
+
+          <div class="step-number">
+            02
+          </div>
+
+          <h5>
+            Set your goals
+          </h5>
+
+          <p>
+            Add your preferences and important
+            information to personalize your experience.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-md-4">
+
+        <div class="step">
+
+          <div class="step-number">
+            03
+          </div>
+
+          <h5>
+            Start your journey
+          </h5>
+
+          <p>
+            Use BabyPlan to stay organized,
+            informed and prepared.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     APP SHOWCASE
+========================= -->
+
+<section
+  class="section showcase"
+  id="app"
+>
+
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <div class="col-lg-5 mb-5 mb-lg-0">
+
+        <div class="section-label">
+          Inside BabyPlan
+        </div>
+
+        <h2 class="showcase-title">
+          A calm, simple mobile experience.
+        </h2>
+
+        <p class="showcase-text mt-4">
+          Every screen is designed to keep things
+          simple and focused, so you can spend less
+          time managing information and more time
+          focusing on what matters.
+        </p>
+
+        <a
+          href="#download"
+          class="btn-main d-inline-block mt-3"
+        >
+          Get BabyPlan →
+        </a>
+
+      </div>
+
+
+      <div class="col-lg-7">
+
+        <div class="app-screens">
+
+          <div class="app-screen">
+
+            <img
+              src="https://via.placeholder.com/380x760.png?text=Home"
+              alt="BabyPlan Home"
+            >
+
+          </div>
+
+
+          <div class="app-screen middle">
+
+            <img
+              src="https://via.placeholder.com/380x760.png?text=Planning"
+              alt="BabyPlan Planning"
+            >
+
+          </div>
+
+
+          <div class="app-screen">
+
+            <img
+              src="https://via.placeholder.com/380x760.png?text=Insights"
+              alt="BabyPlan Insights"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     TRUST
+========================= -->
+
+<section class="trust">
+
+  <div class="container">
+
+    <div class="row g-4">
+
+      <div class="col-6 col-md-3">
+
+        <div class="trust-box">
+
+          <div class="trust-number">
+            01
+          </div>
+
+          <div class="trust-label">
+            Simple Experience
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-6 col-md-3">
+
+        <div class="trust-box">
+
+          <div class="trust-number">
+            02
+          </div>
+
+          <div class="trust-label">
+            Couple Focused
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-6 col-md-3">
+
+        <div class="trust-box">
+
+          <div class="trust-number">
+            03
+          </div>
+
+          <div class="trust-label">
+            Thoughtful Design
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="col-6 col-md-3">
+
+        <div class="trust-box">
+
+          <div class="trust-number">
+            04
+          </div>
+
+          <div class="trust-label">
+            Easy to Use
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section
+  class="cta"
+  id="download"
+>
+
+  <div class="container">
+
+    <div class="section-label">
+      Your journey starts here
+    </div>
+
+    <h2 class="mt-3">
+      Plan together. Prepare better.
+    </h2>
+
+    <p>
+      Discover a simpler way to organize and understand
+      your journey toward parenthood.
+    </p>
+
+    <a
+      href="#"
+      class="btn-main"
+    >
+      Download BabyPlan →
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <div class="container">
+
+    <div class="row align-items-center">
+
+      <div class="col-md-6">
+
+        <div class="footer-brand">
+          BabyPlan
+        </div>
+
+        <small>
+          Making the journey to parenthood simpler.
+        </small>
+
+      </div>
+
+
+      <div class="col-md-6 text-md-end">
+
+        <div class="footer-links">
+
+          <a href="#">
+            Privacy
+          </a>
+
+          <a href="#">
+            Terms
+          </a>
+
+          <a href="#">
+            Contact
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+<!-- Bootstrap JS -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+</html>
