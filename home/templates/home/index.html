@@ -17,6 +17,12 @@
     href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
     rel="stylesheet"
   >
+  {% load static %}
+
+  <link
+    rel="stylesheet"
+    href="{% static 'home/auth.css' %}"
+  >
 
   <style>
 
@@ -750,62 +756,296 @@
      NAVBAR
 ========================= -->
 
+
 <nav class="navbar navbar-expand-lg sticky-top">
 
-  <div class="container">
+    <div class="container">
 
-    <a class="brand" href="#">
-      <span class="brand-mark">♡</span>
-      BabyPlan
+        <a class="brand" href="{% url 'home' %}">
+            <span class="brand-mark">♡</span>
+            BabyPlan
+        </a>
+
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <div
+            class="collapse navbar-collapse"
+            id="navbarMenu"
+        >
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#features"
+                    >
+                        Features
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#how"
+                    >
+                        How It Works
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="#app"
+                    >
+                        App
+                    </a>
+                </li>
+
+
+{% if user.is_authenticated %}
+
+<li class="nav-item login-nav-item">
+
+     <span class="nav-user-name">
+       Welcome,🙏{{ user.first_name|default:user.username }}
+    </span>
+    <a
+        href="{% url 'logout' %}"
+        class="nav-btn logout-btn"
+    >
+        Logout
     </a>
 
+</li>
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarMenu"
+{% else %}
+
+<li class="nav-item login-nav-item">
+
+    <a
+        href="#"
+        class="nav-btn"
+        id="openLoginModal"
     >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+        Login
+    </a>
 
+</li>
+
+{% endif %}
+
+
+    <!-- LOGIN POPUP -->
 
     <div
-      class="collapse navbar-collapse"
-      id="navbarMenu"
+        class="login-popup"
+        id="loginModal"
     >
 
-      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <button
+            type="button"
+            class="popup-close"
+            id="closeLoginModal"
+        >
+            &times;
+        </button>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#features">
-            Features
-          </a>
-        </li>
+        <div class="popup-logo">
+            ♡
+        </div>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#how">
-            How It Works
-          </a>
-        </li>
+        <h3>Welcome Back</h3>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#app">
-            App
-          </a>
-        </li>
+        <p class="popup-text">
+            Login to continue your pregnancy journey
+        </p>
 
-        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-          <a class="nav-btn" href="#download">
-            Get Started
-          </a>
-        </li>
+        <form
+            method="POST"
+            action="{% url 'login' %}"
+        >
 
-      </ul>
+            {% csrf_token %}
+
+            <div class="popup-input">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="login_input"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+            <div class="popup-input">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="popup-login-btn"
+            >
+                Login
+            </button>
+
+        </form>
+
+        <p class="popup-switch">
+
+            Don't have an account?
+
+            <a
+                href="#"
+                id="openRegisterModal"
+            >
+                Create Account
+            </a>
+
+        </p>
 
     </div>
 
-  </div>
+
+    <!-- REGISTER POPUP -->
+
+    <div
+        class="register-popup"
+        id="registerModal"
+    >
+
+        <button
+            type="button"
+            class="popup-close"
+            id="closeRegisterModal"
+        >
+            &times;
+        </button>
+
+        <div class="popup-logo">
+            ♡
+        </div>
+
+        <h3>Create Account</h3>
+
+        <p class="popup-text">
+            Start your pregnancy journey with BabyPlan
+        </p>
+
+        <form
+            method="POST"
+            action="{% url 'register' %}"
+        >
+
+            {% csrf_token %}
+
+            <div class="popup-input">
+
+                <label>Name</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+            </div>
+
+            <div class="popup-input">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+            <div class="popup-input">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Create password"
+                    required
+                >
+
+            </div>
+
+            <div class="popup-input">
+
+                <label>Confirm Password</label>
+
+                <input
+                    type="password"
+                    name="confirm_password"
+                    placeholder="Confirm password"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="popup-login-btn"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+        <p class="popup-switch">
+
+            Already have an account?
+
+            <a
+                href="#"
+                id="backToLogin"
+            >
+                Login
+            </a>
+
+        </p>
+
+    </div>
+
+</li>
+
+
+            </ul>
+
+        </div>
+
+    </div>
 
 </nav>
 
@@ -1397,6 +1637,113 @@
   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
 </script>
 
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const loginButton = document.getElementById("openLoginModal");
+    const loginPopup = document.getElementById("loginModal");
+    const registerPopup = document.getElementById("registerModal");
+
+    const closeLogin = document.getElementById("closeLoginModal");
+    const closeRegister = document.getElementById("closeRegisterModal");
+
+    const openRegister = document.getElementById("openRegisterModal");
+    const backToLogin = document.getElementById("backToLogin");
+
+
+    /* LOGIN OPEN */
+
+    if (loginButton && loginPopup) {
+
+        loginButton.onclick = function (event) {
+
+            event.preventDefault();
+
+            loginPopup.classList.add("show");
+
+            if (registerPopup) {
+                registerPopup.classList.remove("show");
+            }
+
+        };
+
+    }
+
+
+    /* LOGIN CLOSE */
+
+    if (closeLogin && loginPopup) {
+
+        closeLogin.onclick = function () {
+            loginPopup.classList.remove("show");
+        };
+
+    }
+
+
+    /* REGISTER OPEN */
+
+    if (openRegister && registerPopup && loginPopup) {
+
+        openRegister.onclick = function (event) {
+
+            event.preventDefault();
+
+            loginPopup.classList.remove("show");
+            registerPopup.classList.add("show");
+
+        };
+
+    }
+
+
+    /* REGISTER CLOSE */
+
+    if (closeRegister && registerPopup) {
+
+        closeRegister.onclick = function () {
+            registerPopup.classList.remove("show");
+        };
+
+    }
+
+
+    /* BACK TO LOGIN */
+
+    if (backToLogin && registerPopup && loginPopup) {
+
+        backToLogin.onclick = function (event) {
+
+            event.preventDefault();
+
+            registerPopup.classList.remove("show");
+            loginPopup.classList.add("show");
+
+        };
+
+    }
+
+
+    /* ESC */
+
+    document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+
+            if (loginPopup) {
+                loginPopup.classList.remove("show");
+            }
+
+            if (registerPopup) {
+                registerPopup.classList.remove("show");
+            }
+
+        }
+
+    });
+
+});
+</script>
 
 </body>
 </html>

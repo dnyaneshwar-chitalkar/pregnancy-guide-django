@@ -1,0 +1,379 @@
+ ```css
+/* =====================================================
+   BABYPLAN NAVBAR LOGIN POPUP
+   ===================================================== */
+
+
+/* LOGIN NAVBAR ITEM */
+
+.login-nav-item {
+    position: relative;
+}
+
+
+/* LOGIN POPUP */
+
+.login-popup,
+.register-popup {
+
+    position: absolute;
+
+    top: calc(100% + 12px);
+
+    right: 0;
+
+    width: 330px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.18);
+
+    display: none;
+
+    z-index: 9999;
+
+    animation: popupShow 0.25s ease;
+}
+
+
+/* OPEN */
+
+.login-popup.show,
+.register-popup.show {
+
+    display: block;
+}
+
+
+/* SMALL ARROW */
+
+.login-popup::before,
+.register-popup::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -8px;
+
+    right: 28px;
+
+    width: 15px;
+    height: 15px;
+
+    background: #ffffff;
+
+    border-left: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+
+    transform: rotate(45deg);
+}
+
+
+/* CLOSE */
+
+.popup-close {
+
+    position: absolute;
+
+    top: 9px;
+
+    right: 10px;
+
+    width: 28px;
+    height: 28px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f4f4f4;
+
+    color: #666;
+
+    font-size: 19px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+
+.popup-close:hover {
+
+    background: #ffe5ed;
+
+    color: #d8527d;
+
+    transform: rotate(90deg);
+}
+
+
+/* LOGO */
+
+.popup-logo {
+
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 10px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ffe7ef;
+
+    color: #d8527d;
+
+    font-size: 25px;
+
+    box-shadow:
+        4px 4px 10px rgba(0, 0, 0, 0.10);
+}
+
+
+/* HEADING */
+
+.login-popup h3,
+.register-popup h3 {
+
+    margin: 0;
+
+    text-align: center;
+
+    font-size: 21px;
+
+    color: #263238;
+}
+
+
+/* DESCRIPTION */
+
+.popup-text {
+
+    margin: 5px 0 16px;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    color: #7b8794;
+}
+
+
+/* INPUT GROUP */
+
+.popup-input {
+
+    margin-bottom: 10px;
+}
+
+
+/* LABEL */
+
+.popup-input label {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    color: #4d5963;
+}
+
+
+/* INPUT */
+
+.popup-input input {
+
+    width: 100%;
+
+    height: 38px;
+
+    padding: 0 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e0e4e7;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background: #fafbfc;
+
+    color: #263238;
+
+    font-size: 12px;
+
+    transition: 0.2s;
+}
+
+
+.popup-input input:focus {
+
+    border-color: #e383a0;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(227, 131, 160, 0.10);
+}
+
+
+/* LOGIN BUTTON */
+
+.popup-login-btn {
+
+    width: 100%;
+
+    height: 39px;
+
+    margin-top: 3px;
+
+    border: none;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ed789d,
+            #d8527d
+        );
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 16px rgba(216, 82, 125, 0.25);
+
+    transition: 0.2s;
+}
+
+
+.popup-login-btn:hover {
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 10px 20px rgba(216, 82, 125, 0.32);
+}
+
+
+/* SWITCH */
+
+.popup-switch {
+
+    margin: 12px 0 0;
+
+    text-align: center;
+
+    font-size: 11px;
+
+    color: #7b8794;
+}
+
+
+.popup-switch a {
+
+    color: #d8527d;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+
+.popup-switch a:hover {
+
+    text-decoration: underline;
+}
+
+
+/* ANIMATION */
+
+@keyframes popupShow {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-8px)
+            scale(0.97);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 991px) {
+
+    .login-popup,
+    .register-popup {
+
+        position: fixed;
+
+        top: 75px;
+
+        right: 15px;
+
+        width: 330px;
+
+        max-width: calc(100vw - 30px);
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .login-popup,
+    .register-popup {
+
+        width: calc(100vw - 30px);
+
+        right: 15px;
+
+        padding: 20px;
+    }
+
+}
